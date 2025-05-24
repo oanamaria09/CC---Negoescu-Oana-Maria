@@ -15,7 +15,14 @@ export default function CheckAlertsPage() {
   };
 
   const deleteAlert = async (id: string) => {
-    await fetch(`/api/alerts/${id}`, { method: "POST" });
+    await fetch(`/api/alerts/delete`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id }),
+    });
+
     setAlerts(alerts.filter((a) => a.id !== id));
   };
 
